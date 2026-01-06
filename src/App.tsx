@@ -1,51 +1,28 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
+import Login from "./Login";
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
+	if (window.location.pathname === "/login") {
+		return (
+			<main className="w-full p-16 flex flex-col items-center justify-center">
+				<Login />
+			</main>
+		);
+	}
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await invoke("greet", { name }));
-  }
+	return (
+		<main className="w-full p-16 flex flex-col items-center justify-center">
+			<h1>Shellyfin</h1>
 
-  return (
-    <main className="container">
-      <h1>Welcome to Tauri + React</h1>
+			<p className="py-2">
+				Shellyfin is a desktop client for Jellyfin written in Tauri!
+			</p>
 
-      <div className="row">
-        <a href="https://vite.dev" target="_blank">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
-
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault();
-          greet();
-        }}
-      >
-        <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter a name..."
-        />
-        <button type="submit">Greet</button>
-      </form>
-      <p>{greetMsg}</p>
-    </main>
-  );
+			<button onClick={() => (window.location.href = "/login")}>
+				Login to Jellyfin Server
+			</button>
+		</main>
+	);
 }
 
 export default App;
