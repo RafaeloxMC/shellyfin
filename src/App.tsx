@@ -1,26 +1,17 @@
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Login";
+import { Home } from "./Home";
 
 function App() {
-	if (window.location.pathname === "/login") {
-		return (
-			<main className="w-full p-16 flex flex-col items-center justify-center">
-				<Login />
-			</main>
-		);
-	}
-
 	return (
 		<main className="w-full p-16 flex flex-col items-center justify-center">
-			<h1>Shellyfin</h1>
-
-			<p className="py-2">
-				Shellyfin is a desktop client for Jellyfin written in Tauri!
-			</p>
-
-			<button onClick={() => (window.location.href = "/login")}>
-				Login to Jellyfin Server
-			</button>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/login" element={<Login />} />
+				</Routes>
+			</BrowserRouter>
 		</main>
 	);
 }
