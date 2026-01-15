@@ -77,7 +77,7 @@ export default function Login() {
 				<p className="text-red-500">{status}</p>
 			)}
 
-			<button className="mt-4">Login</button>
+			<button className="mt-4 w-80 min-w-24">Login</button>
 		</div>
 	);
 }
